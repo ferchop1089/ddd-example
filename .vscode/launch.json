@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-VideoApplication<ddd-example>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "example.VideoApplication",
+            "projectName": "ddd-example",
+            "args": ""
+        }
+    ]
+}

@@ -1,7 +1,5 @@
 package example.applications.mooc_backend.src.controller.courses;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.PathVariable;

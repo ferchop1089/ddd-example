@@ -17,35 +17,8 @@ public final class CoursesPutController {
 
     @PutMapping(value = "/{courses_id}", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
     @ResponseStatus(code = HttpStatus.CREATED)
-    public void create(@PathVariable("courses_id") final String idCourse, @RequestBody final Request request) {
+    public void create(@PathVariable("courses_id") final String idCourse, @RequestBody final CourseRequest request) {
         System.out.println("id: " + idCourse + ", request: " + request);
-    }
-
-}
-
-final class Request {
-
-    @JsonProperty("name")
-    private String name;
-
-    @JsonProperty("duration")
-    private String duration;
-
-    public Request() {
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public void setDuration(final String duration) {
-        this.duration = duration;
-    }
-
-    @Override
-    public String toString() {
-        return new StringBuilder().append("{").append("name: ").append(name).append(", duration: ").append(duration)
-                .append("}").toString();
     }
 
 }

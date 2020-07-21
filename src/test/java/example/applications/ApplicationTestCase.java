@@ -24,34 +24,34 @@ public abstract class ApplicationTestCase {
         // @Autowired
         // private EventBus eventBus;
 
-        protected void assertResponse(String endpoint, Integer expectedStatusCode, String expectedResponse)
-                        throws Exception {
+        protected void assertResponse(HttpMethod method, String endpoint, Integer expectedStatusCode,
+                        String expectedResponse) throws Exception {
                 ResultMatcher response = expectedResponse.isEmpty() ? MockMvcResultMatchers.content().string("")
                                 : MockMvcResultMatchers.content().json(expectedResponse);
 
-                mockMvc.perform(MockMvcRequestBuilders.get(endpoint))
+                mockMvc.perform(MockMvcRequestBuilders.request(method, endpoint))
                                 .andExpect(MockMvcResultMatchers.status().is(expectedStatusCode)).andExpect(response);
         }
 
-        protected void assertResponse(String endpoint, Integer expectedStatusCode, String expectedResponse,
-                        HttpHeaders headers) throws Exception {
+        protected void assertResponse(HttpMethod method, String endpoint, Integer expectedStatusCode,
+                        String expectedResponse, HttpHeaders headers) throws Exception {
                 ResultMatcher response = expectedResponse.isEmpty() ? MockMvcResultMatchers.content().string("")
                                 : MockMvcResultMatchers.content().json(expectedResponse);
 
-                mockMvc.perform(MockMvcRequestBuilders.get(endpoint).headers(headers))
+                mockMvc.perform(MockMvcRequestBuilders.request(method, endpoint).headers(headers))
                                 .andExpect(MockMvcResultMatchers.status().is(expectedStatusCode)).andExpect(response);
         }
 
-        protected void assertRequestWithBody(String method, String endpoint, String body, Integer expectedStatusCode)
-                        throws Exception {
-                mockMvc.perform(MockMvcRequestBuilders.request(HttpMethod.valueOf(method), endpoint).content(body)
+        protected void assertRequestWithBody(HttpMethod method, String endpoint, String body,
+                        Integer expectedStatusCode) throws Exception {
+                mockMvc.perform(MockMvcRequestBuilders.request(method, endpoint).content(body)
                                 .contentType(MediaType.APPLICATION_JSON))
                                 .andExpect(MockMvcResultMatchers.status().is(expectedStatusCode))
                                 .andExpect(MockMvcResultMatchers.content().string(""));
         }
 
-        protected void assertRequest(String method, String endpoint, Integer expectedStatusCode) throws Exception {
-                mockMvc.perform(MockMvcRequestBuilders.request(HttpMethod.valueOf(method), endpoint))
+        protected void assertRequest(HttpMethod method, String endpoint, Integer expectedStatusCode) throws Exception {
+                mockMvc.perform(MockMvcRequestBuilders.request(method, endpoint))
                                 .andExpect(MockMvcResultMatchers.status().is(expectedStatusCode))
                                 .andExpect(MockMvcResultMatchers.content().string(""));
         }

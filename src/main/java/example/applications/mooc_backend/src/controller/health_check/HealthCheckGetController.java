@@ -2,9 +2,11 @@ package example.applications.mooc_backend.src.controller.health_check;
 
 import java.util.HashMap;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HealthCheckGetController {
 
     @GetMapping(value = "/ping", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    @ResponseStatus(code = HttpStatus.OK)
     public HashMap<String, String> index() {
         final HashMap<String, String> status = new HashMap<>();
         status.put("status", "pong");
